@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed = 6.0f;
     public float jumpSpeed = 10f;
-    public float gravity = 20.0f;
+    public float gravity = 20f;
     public float mouseSensitivity = 2f;
     public float lookUpClamp = -30f;
     public float lookDownClamp = 60f;
@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Cursor.visible = false;
         characterController = GetComponent<CharacterController>();
         SetCurrentCamera();
     }
@@ -46,6 +47,10 @@ public class PlayerMovement : MonoBehaviour
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= speed;
 
+            if(Input.GetButton("Jump"))
+            {
+                moveDirection.y = jumpSpeed;
+            }
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
