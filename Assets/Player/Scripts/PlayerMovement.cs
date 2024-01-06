@@ -29,8 +29,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Locomotion();
-        RotateAndLook();
+        if(!MenuController.IsGamePaused)
+        {
+            Locomotion();
+            RotateAndLook();
+        }
     }
 
     void SetCurrentCamera()
