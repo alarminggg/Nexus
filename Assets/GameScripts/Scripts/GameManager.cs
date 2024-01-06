@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        Time.timeScale = 0f;
         Instance.UIManager.ActivateEndGame();
         MenuController.IsGamePaused = true;
 

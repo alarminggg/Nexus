@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+
         characterController = GetComponent<CharacterController>();
         SetCurrentCamera();
     }
@@ -29,11 +31,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!MenuController.IsGamePaused)
-        {
-            Locomotion();
-            RotateAndLook();
-        }
+        Locomotion();
+        RotateAndLook();
+
     }
 
     void SetCurrentCamera()
@@ -62,8 +62,8 @@ public class PlayerMovement : MonoBehaviour
 
     void RotateAndLook()
     {
-        rotateX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        rotateY -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+        rotateX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        rotateY -= Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
         transform.Rotate(0f, rotateX, 0f);
         rotateY = Mathf.Clamp(rotateY, lookUpClamp, lookDownClamp);
