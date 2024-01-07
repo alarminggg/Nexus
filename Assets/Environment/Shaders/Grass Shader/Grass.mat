@@ -61,5 +61,5 @@ Material:
     - _Smoothness: 0
     - _Speed: 2
     m_Colors:
-    - _Albedo: {r: 1, g: 1, b: 1, a: 0}
+    - _Albedo: {r: 0.5606978, g: 0.6792453, b: 0.57763314, a: 0}
   m_BuildTextureStacks: []
