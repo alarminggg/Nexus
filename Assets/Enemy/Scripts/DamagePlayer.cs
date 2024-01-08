@@ -7,6 +7,7 @@ public class DamagePlayer : MonoBehaviour
     [SerializeField]
     float rawDamage = 20f;
 
+   
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "PlayerObject")
