@@ -26,24 +26,28 @@ public class LookAtPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        if (distanceToPlayer <= maxFollowDistance)
+        if(player != null)
         {
-            if (distanceToPlayer > stoppingDistance)
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+            if (distanceToPlayer <= maxFollowDistance)
             {
-                enemy.SetDestination(player.position);
-            }
-            else
-            {
-                enemy.ResetPath();
+                if (distanceToPlayer > stoppingDistance)
+                {
+                    enemy.SetDestination(player.position);
+                }
+                else
+                {
+                    enemy.ResetPath();
 
-                Vector3 directionToPlayer = player.position - transform.position;
-                directionToPlayer.y = 0;
-                Quaternion rotationToPlayer = Quaternion.LookRotation(directionToPlayer);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotationToPlayer, Time.deltaTime * 5.0f);
+                    Vector3 directionToPlayer = player.position - transform.position;
+                    directionToPlayer.y = 0;
+                    Quaternion rotationToPlayer = Quaternion.LookRotation(directionToPlayer);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, rotationToPlayer, Time.deltaTime * 5.0f);
+                }
+                ShootAtPlayer();
             }
-            ShootAtPlayer();
         }
+        
         
     }
 
